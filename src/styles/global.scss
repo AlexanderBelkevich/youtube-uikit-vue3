@@ -1,0 +1,19 @@
+:root {
+  --primary-color: #6979f8;
+  --primary-color-hover: #a5affb;
+  --second-color: #be52f2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #fafafa;
+  margin: 0;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
