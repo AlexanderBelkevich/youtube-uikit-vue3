@@ -1,26 +1,28 @@
 <script setup>
-import {ref} from 'vue';
+import { ref } from "vue";
 
 const props = defineProps({
   openSidebar: {
     type: Boolean,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
 const links = ref([
-  {name: 'Typography', href: '/typography'},
-  {name: 'Button', href: '/button'}
-])
+  { name: "Typography", href: "/typography" },
+  { name: "Button", href: "/button" },
+]);
 </script>
 
 <template>
-  <div :class="['sidebar', {sidebar_isopen: openSidebar}]">
+  <div :class="['sidebar', { sidebar_isopen: openSidebar }]">
     <router-link
       class="sidebar__link"
       v-for="link in links"
       :key="link.name"
-      :to="link.href">{{link.name}}</router-link>
+      :to="link.href"
+      >{{ link.name }}</router-link
+    >
   </div>
 </template>
 
@@ -48,7 +50,7 @@ const links = ref([
     font-weight: bold;
     margin-bottom: 10px;
     &:hover {
-      border-color: var(--primary-color);
+      border-color: var(--primary);
     }
   }
 }
