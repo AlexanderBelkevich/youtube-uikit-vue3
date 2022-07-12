@@ -26,3 +26,12 @@ a {
   color: var(--primary-color);
   text-decoration: none;
 }
+
+.line {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  &_block {
+    display: block;
+  }
+}
