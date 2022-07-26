@@ -1,6 +1,6 @@
 <script setup>
-import LayoutHeader from "@/components/layout/Header.vue";
-import LayoutSidebar from "@/components/layout/Sidebar.vue";
+import LayoutHeader from "@/components/Layout/Header.vue";
+import LayoutSidebar from "@/components/Layout/Sidebar.vue";
 import { ref } from "vue";
 
 const isOpenMenu = ref(false);

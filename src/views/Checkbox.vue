@@ -14,6 +14,8 @@
     {name: 'Loki', id: 'h4'},
   ])
   const selectedHeroes = ref(['h1', 'h3'])
+
+  const switchProfessional = ref(false)
 </script>
 
 <template>
@@ -41,5 +43,16 @@
   <div class="line line_block">
     <p>Selected Heroes: {{selectedHeroes}}</p>
     <checkbox-group v-model:value="selectedHeroes" name="heroes" :options="listOfHeroes"/>
+  </div>
+  <h2 class="heading-2">Switch</h2>
+  <div class="line line_block">
+    <p>Switch: {{switchProfessional}}</p>
+    <checkbox
+      label="I'm a professional"
+      id="switch"
+      name="switch"
+      value="I'm a professional"
+      type="switch"
+      v-model:checked="switchProfessional"/>
   </div>
 </template>

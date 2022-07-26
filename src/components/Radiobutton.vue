@@ -1,5 +1,5 @@
 <script setup>
-  const emits = defineEmits(['update:checked', 'updateCheckboxGroup'])
+  const emits = defineEmits(['update:checkedValue'])
   const props = defineProps({
     name: {
       type: String,
@@ -28,40 +28,29 @@
     group: {
       type: Boolean,
       default: false
-    },
-    type: {
-      type: String,
-      default: 'checkbox'
     }
   })
 
   const handleClick = (event) => {
-    if (props.group) {
-      emits('updateCheckboxGroup', {optionId: props.id, checked: event.target.checked})
-    } else {
-      emits('update:checked', event.target.checked)
-    }
+    emits('update:checkedValue', event.target.value)
   }
 </script>
 
 <template>
-  <div :class="[{'switch-container': type === 'switch'}]">
-    <input
-      :class="[{'checkbox': type === 'checkbox'}, {'switch': type === 'switch'}]"
-      type="checkbox"
-      :name="name"
-      :id="id"
-      :value="value"
-      :checked="checked"
-      :disabled="disabled"
-      @input="handleClick($event)">
-    <label :for="id">{{label}}</label>
-    <label :for="id" class="switch__label" v-if="type === 'switch'">{{label}}</label>
-  </div>
+  <input
+    class="radiobutton"
+    type="radio"
+    :name="name"
+    :id="id"
+    :value="value"
+    :checked="checked"
+    :disabled="disabled"
+    @input="handleClick($event)">
+  <label :for="id">{{label}}</label>
 </template>
 
 <style lang="scss" scoped>
-.checkbox {
+.radiobutton {
   position: absolute;
   z-index: -1;
   opacity: 0;
@@ -83,6 +72,7 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 50% 50%;
+    border-radius: 50%;
   }
   &:checked + label::before {
     border-color: var(--primary);
@@ -105,59 +95,7 @@
   &:disabled + label::before {
     background-color: #e9ecef;
     border: 1px solid #ECEBED;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
   }
 }
-
-.switch {
-	height: 0;
-	width: 0;
-	visibility: hidden;
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-  &-container {
-    display: flex;
-    align-items: center;
-  }
-  &__label {
-    margin-left: 10px;
-  }
-  & + label {
-    cursor: pointer;
-    text-indent: -9999px;
-    width: 50px;
-    height: 35px;
-    background: #fafafa;
-    border: 1px solid #adb5bd;
-    display: block;
-    border-radius: 100px;
-    position: relative;
-    &:after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 5px;
-      width: 26px;
-      height: 26px;
-      background: #fff;
-      background: var(--primary);
-      border-radius: 90px;
-      transition: 0.3s;
-      transform: translateY(-50%);
-      }
-  }
-  &:checked {
-    & + label {
-      background: var(--primary);
-      &:after {
-        background: #fff;
-        left: calc(100% - 5px);
-        transform: translateX(-100%) translateY(-50%);
-      }
-      &:active:after {
-        width: 33px;
-      }
-    }
-  }
-} 
 </style>
